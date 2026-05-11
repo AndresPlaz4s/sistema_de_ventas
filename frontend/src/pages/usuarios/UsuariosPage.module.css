@@ -1,0 +1,370 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap');
+
+.page {
+    padding: 2rem 2.5rem;
+    max-width: 1200px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* ─── Header ─────────────────────────────────────────── */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.titleBlock { display: flex; flex-direction: column; gap: 0.2rem; }
+
+.title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #111;
+    letter-spacing: -0.5px;
+}
+.sub { color: #6b7280; font-size: 13px; margin: 0; margin-top: 2px; }
+
+.btnPrimary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 14px;
+    background: #7c3aed;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: transform .2s ease, box-shadow .2s ease;
+    font-family: 'DM Sans', sans-serif;
+}
+.btnPrimary svg { width: 16px; height: 16px; }
+.btnPrimary:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(124,58,237,.3); }
+.btnPrimary:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+/* ─── Stats ──────────────────────────────────────────── */
+.statsRow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+}
+
+.statCard {
+    background: #fff;
+    border-radius: 14px;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid rgba(0,0,0,.06);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,.04);
+}
+
+.statDot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.statInfo { display: flex; flex-direction: column; gap: 0.1rem; }
+.statNum { font-size: 1.6rem; font-weight: 700; color: #111; line-height: 1; font-family: 'Syne', sans-serif; }
+.statLabel { font-size: 0.78rem; color: #9ca3af; font-weight: 500; }
+
+/* ─── Search ─────────────────────────────────────────── */
+.searchWrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 14px;
+    height: 44px;
+    border-radius: 14px;
+    background: rgba(0,0,0,.03);
+    border: 1px solid transparent;
+    max-width: 420px;
+    margin-bottom: 1.5rem;
+    transition: border-color .2s ease, background .2s ease;
+}
+.searchWrap:focus-within { background: #fff; border-color: rgba(0,0,0,.08); }
+.searchIcon { width: 16px; height: 16px; color: #9ca3af; flex-shrink: 0; }
+.searchInput {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 14px;
+    color: #111;
+    font-family: 'DM Sans', sans-serif;
+}
+.searchInput::placeholder { color: #9ca3af; }
+
+/* ─── Cards grid ─────────────────────────────────────── */
+.cardsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+/* ─── User card ──────────────────────────────────────── */
+.userCard {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,.07);
+    border-radius: 20px;
+    padding: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+/* Franja de color superior según rol */
+.userCard::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 20px 20px 0 0;
+}
+.userCard.admin::before    { background: linear-gradient(90deg, #7c3aed, #a78bfa); }
+.userCard.vendedor::before { background: linear-gradient(90deg, #059669, #34d399); }
+
+.userCard:hover {
+    border-color: rgba(0,0,0,.13);
+    box-shadow: 0 8px 28px rgba(0,0,0,.07);
+}
+
+/* ─── Card top ───────────────────────────────────────── */
+.cardTop {
+    display: flex;
+    align-items: center;
+    gap: .85rem;
+}
+
+.avatar {
+    width: 46px; height: 46px;
+    border-radius: 13px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.15rem; font-weight: 700;
+    font-family: 'Syne', sans-serif;
+    flex-shrink: 0;
+    letter-spacing: -.5px;
+}
+
+.cardInfo { flex: 1; min-width: 0; }
+.cardName {
+    font-weight: 600; color: #111; font-size: .93rem;
+    margin: 0 0 .1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.cardUsername { font-size: .75rem; color: #9ca3af; font-family: monospace; }
+
+/* Rol badges */
+.rolBadge {
+    display: inline-flex; align-items: center;
+    padding: .28rem .7rem;
+    border-radius: 20px; font-size: .72rem; font-weight: 600;
+    letter-spacing: .02em; white-space: nowrap;
+    flex-shrink: 0;
+}
+.rol_admin    { background: #1e1b4b; color: #c4b5fd; }
+.rol_vendedor { background: #ecfdf5; color: #059669; }
+
+/* ─── Divider ────────────────────────────────────────── */
+.divider {
+    height: 1px;
+    background: rgba(0,0,0,.06);
+}
+
+/* ─── Card meta ──────────────────────────────────────── */
+.cardMeta {
+    display: flex; flex-direction: column; gap: .4rem;
+    font-size: .81rem;
+    color: #6b7280;
+}
+
+.metaRow { display: flex; align-items: center; gap: .5rem; }
+.metaRow svg { width: 13px; height: 13px; flex-shrink: 0; color: #9ca3af; }
+
+.estadoBadge {
+    display: inline-flex; align-items: center; gap: .3rem;
+    padding: .22rem .65rem;
+    border-radius: 20px; font-size: .72rem; font-weight: 600;
+}
+.estadoBadge::before {
+    content: ''; width: 5px; height: 5px;
+    border-radius: 50%; background: currentColor;
+}
+.activo  { background: #f0fdf4; color: #16a34a; }
+.inactivo { background: rgba(0,0,0,.04); color: #9ca3af; }
+
+/* ─── Card actions ───────────────────────────────────── */
+.cardActions {
+    display: flex; gap: .5rem; margin-top: auto;
+}
+
+.btnEdit {
+    flex: 1; padding: .52rem; border-radius: 10px;
+    border: none;
+    background: rgba(124,58,237,.09);
+    color: #7c3aed;
+    font-size: .8rem; font-weight: 600;
+    cursor: pointer; transition: background .15s, transform .1s;
+    font-family: 'DM Sans', sans-serif;
+}
+.btnEdit:hover { background: rgba(124,58,237,.16); }
+.btnEdit:active { transform: scale(.97); }
+
+.btnDanger {
+    flex: 1; padding: .52rem; border-radius: 10px; border: none;
+    background: rgba(220,38,38,.07); color: #dc2626;
+    font-size: .8rem; font-weight: 600; cursor: pointer;
+    transition: background .15s, transform .1s;
+    font-family: 'DM Sans', sans-serif;
+}
+.btnDanger:hover { background: rgba(220,38,38,.14); }
+.btnDanger:active { transform: scale(.97); }
+
+.btnSuccess {
+    flex: 1; padding: .52rem; border-radius: 10px; border: none;
+    background: #f0fdf4; color: #16a34a;
+    font-size: .8rem; font-weight: 600; cursor: pointer;
+    transition: background .15s, transform .1s;
+    font-family: 'DM Sans', sans-serif;
+}
+.btnSuccess:hover { background: #dcfce7; }
+.btnSuccess:active { transform: scale(.97); }
+
+/* ─── Modal ──────────────────────────────────────────── */
+.overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.35);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 9999;
+    animation: fadeIn .2s ease;
+}
+.modal {
+    background: #fff;
+    border-radius: 24px;
+    padding: 28px;
+    width: 100%; max-width: 520px;
+    box-shadow: 0 24px 60px rgba(0,0,0,.12);
+    animation: slideUp .3s cubic-bezier(.16,1,.3,1);
+    font-family: 'DM Sans', sans-serif;
+}
+.modalTop {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 20px;
+}
+.modalTitle {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px; font-weight: 700;
+    letter-spacing: -0.5px; color: #111; margin: 0;
+}
+.closeBtn {
+    width: 32px; height: 32px;
+    border-radius: 8px; border: none;
+    background: rgba(0,0,0,.05);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: #6b7280; font-size: 0.9rem;
+    transition: background .15s;
+}
+.closeBtn:hover { background: rgba(0,0,0,.1); }
+
+.modalBody { padding: 0; }
+
+.formGrid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 14px; margin-bottom: 24px;
+}
+.field { display: flex; flex-direction: column; gap: 0.4rem; }
+.fullWidth { grid-column: 1 / -1; }
+.field label {
+    font-size: 12px; font-weight: 600;
+    color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.field input, .field select {
+    width: 100%; height: 42px;
+    padding: 0 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,.1);
+    background: rgba(0,0,0,.02);
+    font-size: 14px; color: #111;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+    transition: border-color .2s, background .2s;
+    box-sizing: border-box;
+}
+.field input:focus, .field select:focus {
+    border-color: rgba(124,58,237,.4);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(124,58,237,.08);
+}
+.field input:disabled { opacity: .5; cursor: not-allowed; }
+
+.modalFooter {
+    display: flex; justify-content: flex-end; gap: 10px;
+    padding-top: 1rem; border-top: 1px solid rgba(0,0,0,.06);
+}
+.btnSecondary {
+    padding: 10px 20px; border-radius: 12px;
+    border: 1px solid rgba(0,0,0,.1);
+    background: transparent;
+    font-size: 14px; font-weight: 500; color: #6b7280;
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+    transition: background .15s;
+}
+.btnSecondary:hover { background: rgba(0,0,0,.04); }
+
+/* ─── Alerts ─────────────────────────────────────────── */
+.error {
+    background: #fff5f5; color: #dc2626;
+    border: 1px solid #fee2e2;
+    border-radius: 12px; padding: 12px 14px;
+    margin-bottom: 14px; font-size: 13px;
+}
+.success {
+    background: #f0fdf4; color: #15803d;
+    border: 1px solid #bbf7d0;
+    border-radius: 12px; padding: 12px 14px;
+    margin-bottom: 14px; font-size: 13px;
+}
+.empty { color: #9ca3af; padding: 4rem; text-align: center; font-size: 14px; }
+
+/* ─── Animations ─────────────────────────────────────── */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px) scale(.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.photoRow {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem; background: rgba(0,0,0,.02);
+    border-radius: 14px; border: 1px solid rgba(0,0,0,.06);
+    margin-bottom: 14px;
+}
+.avatarUpload {
+    position: relative; width: 64px; height: 64px;
+    border-radius: 14px; background: #e0e7ff; color: #4338ca;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; font-weight: 700; font-family: 'Syne', sans-serif;
+    overflow: hidden; flex-shrink: 0;
+}
+.avatarImg { width: 100%; height: 100%; object-fit: cover; }
+.avatarOverlay {
+    position: absolute; inset: 0; background: rgba(0,0,0,.45);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; cursor: pointer; transition: opacity .2s; border-radius: 14px;
+}
+.avatarOverlay svg { width: 22px; height: 22px; color: #fff; }
+.avatarUpload:hover .avatarOverlay { opacity: 1; }
+.photoHint p { font-size: .88rem; font-weight: 600; color: #111; margin-bottom: 2px; }
+.photoHint span { font-size: .75rem; color: #9ca3af; }
+.removePhoto {
+    display: block; margin-top: 6px; background: none; border: none;
+    color: #dc2626; font-size: .75rem; cursor: pointer; padding: 0;
+    font-family: 'DM Sans', sans-serif;
+}
+.removePhoto:hover { text-decoration: underline; }

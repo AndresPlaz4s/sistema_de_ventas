@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@layer utilities {
+
+    /* Contenedor de perspectiva para el efecto 3D */
+    .perspective-1000 {
+        perspective: 1000px;
+    }
+
+    /* Clase para girar la tarjeta 180 grados */
+    .rotate-y-180 {
+        transform: rotateY(180deg);
+    }
+
+    /* Asegura que los hijos mantengan el contexto 3D */
+    .preserve-3d {
+        transform-style: preserve-3d;
+    }
+
+    /* Oculta la cara de atrás cuando no está de frente */
+    .backface-hidden {
+        backface-visibility: hidden;
+    }
+}
